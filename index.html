@@ -14,40 +14,27 @@
 <body>
 <div class="container">
     <div id="app" class="row">
-        <div class="col-12 col-lg-6">
-        <!--    <img src="./images/img.png" alt="">-->
-           <!-- <img v-bind:src="image" alt="product">-->
-            <img :src="image" :alt="product">
+        <!--
+        product-weergave = component
+        props
+        :gold = variabele uit het component (props)
+        gold = main.js (true or false)
+        event-handler
+        @toevoegen-winkelwagen (emitten in het component)
+        updateWinkelwagen = niveau hoger in main.js = ik wil het aantal elders ook weergeven
+        in mijn applicatie
+        -->
+        <div>
+            Winkelwagen({{winkelwagen.length}})
         </div>
-        <div class="col-12 col-lg-6">
-            <h1>{{ title }} - &euro; {{prijs}}</h1>
-            <h2>{{ merk }}</h2>
-            <h2>Beschrijving</h2>
-            <p>{{beschrijving}}</p>
-            <h2>Voorraad - ({{inVoorraad}})</h2>
-            <p v-if="inVoorraad > 9">In Voorraad</p>
-            <p v-else-if="inVoorraad > 0 && inVoorraad <= 9">Laatste stuks</p>
-            <p v-else>Niet In Voorraad</p>
-            <h2>Details</h2>
-            <ul>
-                <li v-for="item in productDetails">
-                    {{item}}
-                </li>
-            </ul>
-            <h2>Soort</h2>
-            <div class="kleurvak d-inline-block m-1" :style="{background:soort.kleur}" @mouseover="updateImageandStock(soort.soortId)" v-for="soort in soorten" :key="soort.soortId">
-                <!--{{soort.kleur}}-->
-            </div>
-            <div>
-                Winkelwagen({{winkelwagen}})
-            </div>
-            <button v-on:click="addToCart" class="btn btn-outline-success my-3" :disabled="!inVoorraad"><i class="bi bi-cart-plus"></i></button>
-            <button @click="addToCart" class="btn btn-outline-success my-3" :disabled="!inVoorraad"><i class="bi bi-cart-plus"></i></button>
-        </div>
+     <product-weergave @toevoegen-winkelwagen="updateWinkelwagen" :gold="gold"></product-weergave>
     </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <script src="./js/main.js"></script>
+<script src="./components/productweergave.js"></script>
+<script src="./components/reviewform.js"></script>
+<script src="./components/reviewlijst.js"></script>
 <script>
     const mountedApp = app.mount('#app')
 </script>
